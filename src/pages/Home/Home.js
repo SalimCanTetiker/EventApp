@@ -1,20 +1,44 @@
-import { View, Text, FlatList } from 'react-native'
-import React from 'react'
+import { View, Text, Image, FlatList} from 'react-native'
+import React, {useState, useEffect}from 'react'
+import axios from 'axios'
 
 import SearchBar from '../../components/SearchBar/SearchBar'
-import useFetch from '../../hooks/useFetch/useFetch'
+
+import styles from './Home.style'
+
 
 const Home = () => {
+const [data, setData] = useState([])
 
-  const data = useFetch('https://openapi.izmir.bel.tr/api/ibb/kultursanat/etkinlikler')
+const getData = async () => {
+  try {
+    const response = await axios.get('http://192.168.2.233:3000/event')
+    setData(response.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+useEffect(() => {
+  getData()
+}, [])
 
-  const renderEvent = ({item}) => <Text>{item.Tur}</Text>
+const renderEvent = ({item}) => {
+  return ( 
+  <View style={styles.body_container}>
+    <Text style={styles.text}>{item.name}</Text>
+    <Image style={styles.image} source={{uri: item.image}}/>
+    <Text>{item.category}</Text>
+  </View>
+  )
+}
 
   return (
-    <View>
+    <View style={styles.container}>
       <SearchBar/>
-      <Text>Home</Text>
-      <FlatList data={data} renderItem={renderEvent}/>
+      { data.length ? (
+        <FlatList data={data} renderItem={renderEvent}/>
+      ) : null
+      }
     </View>
   )
 }
