@@ -1,13 +1,14 @@
-import { View, Text, Image, FlatList} from 'react-native'
+import { View, FlatList} from 'react-native'
 import React, {useState, useEffect}from 'react'
 import axios from 'axios'
 
 import SearchBar from '../../components/SearchBar/SearchBar'
+import EventCard from '../../components/Card/EventCard'
 
 import styles from './Home.style'
 
 
-const Home = () => {
+const Home = ({navigation}) => {
 const [data, setData] = useState([])
 
 const getData = async () => {
@@ -22,15 +23,11 @@ useEffect(() => {
   getData()
 }, [])
 
-const renderEvent = ({item}) => {
-  return ( 
-  <View style={styles.body_container}>
-    <Text style={styles.text}>{item.name}</Text>
-    <Image style={styles.image} source={{uri: item.image}}/>
-    <Text>{item.category}</Text>
-  </View>
-  )
+const selectEvent = (id, name, image, date, time, location) => {
+  navigation.navigate('Detail', {id, name, image, date, time,location})
 }
+
+const renderEvent = ({item}) => <EventCard event={item} onPress={() => selectEvent(item.id, item.name, item.image, item.date, item.time, item.location)}/>
 
   return (
     <View style={styles.container}>
