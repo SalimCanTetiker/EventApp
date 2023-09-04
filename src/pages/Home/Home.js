@@ -23,11 +23,11 @@ useEffect(() => {
   getData()
 }, [])
 
-const selectEvent = (id, name, image, date, time, location) => {
-  navigation.navigate('Detail', {id, name, image, date, time,location})
+const selectEvent = (item) => {
+  navigation.navigate('Detail', {item})
 }
 
-const renderEvent = ({item}) => <EventCard event={item} onPress={() => selectEvent(item.id, item.name, item.image, item.date, item.time, item.location)}/>
+const renderEvent = ({item}) => <EventCard event={item} onPress={() => selectEvent(item)}/>
 
   return (
     <View style={styles.container}>
