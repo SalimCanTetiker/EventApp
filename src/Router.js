@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import auth from '@react-native-firebase/auth';
 
 import Home from './pages/Home/Home'
 import Favorite from './pages/Favorite/Favorite'
@@ -49,11 +50,24 @@ const AuthStack = () => {
 }
 
 const Router = () => {
+
+  const [userSession, setUserSession] = useState();
+
+  useEffect(() => {
+    auth().onAuthStateChanged(user => {
+      setUserSession(!!user);
+    });
+  },[]);
+
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name='AuthStack' component={AuthStack}/>
-        <Stack.Screen name='TabStack' component={TabStack}/>
+      {!userSession ? (
+     <Stack.Screen name='Auth' component={AuthStack} /> 
+     ) : ( 
+     <Stack.Screen name='Tab' component={TabStack} /> 
+      )}
       </Stack.Navigator>
     </NavigationContainer>
   )
