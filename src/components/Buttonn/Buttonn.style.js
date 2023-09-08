@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     buttonContainer: {
         elevation: 8,
-        backgroundColor: "yellow",
+        backgroundColor: "#191970",
         borderRadius: 10,
         paddingVertical: 10,
         paddingHorizontal: 12,
@@ -13,6 +13,7 @@ export default StyleSheet.create({
     text: {
         fontSize: 16,
         textAlign: 'center',
-        fontWeight: 'bold', 
+        fontWeight: 'bold',
+        color: 'white'
     },
 })

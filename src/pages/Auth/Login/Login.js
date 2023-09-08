@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Pressable, Text, ScrollView} from "react-native";
+import React from "react";
+import { View, Pressable, Text, ScrollView, ImageBackground} from "react-native";
 import { Formik } from 'formik';
 import auth from '@react-native-firebase/auth';
 
@@ -15,6 +15,9 @@ const initialFormValues = {
 
 const Login = ({navigation}) => {
 
+    const image = {uri: 'https://www1.chester.ac.uk/sites/default/files/styles/hero/public/Events%20Management%20festival%20image.jpg?itok=eJ3k-5R6'}
+
+
     const handleSignUp = () => {
         navigation.navigate('Sign')
     }
@@ -29,12 +32,12 @@ const Login = ({navigation}) => {
         }
     }
     return(
-        <View style={styles.container}>
-            <ScrollView>
+        <ImageBackground source={image} style={styles.image}>
+            <ScrollView style={styles.container}>
         <Formik initialValues={initialFormValues} onSubmit={handleFormSubmit}>
             {({handleChange, handleSubmit, values }) => (
                 <>
-            <Input placeholder={'email giriniz'} value={values.usermail} onChangeText={handleChange('usermail')} IconName={'account-outline'}/>
+            <Input placeholder={'email'} value={values.usermail} onChangeText={handleChange('usermail')} IconName={'account-outline'}/>
             <Input placeholder={'password'} value={values.password} onChangeText={handleChange('password')} IconName={'account-key-outline'}/>
             <Buttonn title={"LOGİN"} onPress={handleSubmit} />
             </>
@@ -47,7 +50,7 @@ const Login = ({navigation}) => {
         </Pressable>
         </View>
         </ScrollView>
-        </View>
+        </ImageBackground>
 
     )
 }

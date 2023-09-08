@@ -1,9 +1,8 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-    container: {
-        backgroundColor: 'white',
-        flex: 1,
+      container: {
+        paddingTop: 250
       },
       register_container: {
         flexDirection: 'row',
@@ -11,10 +10,15 @@ export default StyleSheet.create({
         marginTop: 40,
       },
       register_title: {
-        fontSize: 15,
+        fontSize: 16,
+        color: 'white'
       },
       register_button: {
-        fontSize: 17,
+        fontSize: 18,
         fontWeight: 'bold',
+        color: 'white'
       },
+      image: {
+        flex: 1
+    }
 })

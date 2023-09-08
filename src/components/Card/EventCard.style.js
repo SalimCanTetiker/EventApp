@@ -3,15 +3,18 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        borderWidth: 1,
-        padding: 20,
-        margin: 20,
+        borderWidth: 2,
+        borderRadius: 8,
+        borderColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 5,
+        margin: 30
     },
     image: {
-        width: 150,
-        height: 150,
-        resizeMode: 'contain',
-        margin: 10
+        width: 200,
+        height: 200,
+        resizeMode: 'contain'
     },
     text: {
         fontSize: 18,

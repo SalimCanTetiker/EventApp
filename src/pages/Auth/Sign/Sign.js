@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Pressable, Text, ScrollView} from "react-native";
+import { View, Pressable, Text, ScrollView, ImageBackground} from "react-native";
 import { Formik } from 'formik';
 import auth from '@react-native-firebase/auth';
 
@@ -15,6 +15,8 @@ const initialFormValues = {
 }
 
 const Sign = ({navigation}) => {
+
+    const image = {uri: 'https://www1.chester.ac.uk/sites/default/files/styles/hero/public/Events%20Management%20festival%20image.jpg?itok=eJ3k-5R6'}
 
     const handleForm = async (formValues) => {
         if (formValues.password !== formValues.repassword){
@@ -33,8 +35,8 @@ const Sign = ({navigation}) => {
         }
     }
     return(
-        <View style={styles.container}>
-            <ScrollView>
+        <ImageBackground source={image} style={styles.image}>
+            <ScrollView style={styles.container}>
         <Formik initialValues={initialFormValues} onSubmit={handleForm}>
             {({handleChange, handleSubmit, values }) => (
                 <>
@@ -52,7 +54,7 @@ const Sign = ({navigation}) => {
             </Pressable>
             </View>
             </ScrollView>
-        </View>
+        </ImageBackground>
     )
 }
 export default Sign;

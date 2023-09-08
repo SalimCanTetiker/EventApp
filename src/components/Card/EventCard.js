@@ -9,7 +9,7 @@ const EventCard = ({event, onPress}) => {
     <View style={styles.container}>
       <Text style={styles.text}>{event.name}</Text>
       <Image style={styles.image} source={{uri: event.image}}/>
-      <Text>{event.category}</Text>
+      <Text style={styles.text}>{event.category}</Text>
     </View>
     </Pressable>
   )

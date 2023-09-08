@@ -1,4 +1,4 @@
-import { View, FlatList} from 'react-native'
+import { View, FlatList, ImageBackground} from 'react-native'
 import React, {useState, useEffect}from 'react'
 import axios from 'axios'
 
@@ -9,6 +9,9 @@ import styles from './Home.style'
 
 
 const Home = ({navigation}) => {
+
+  const image = {uri: 'https://www1.chester.ac.uk/sites/default/files/styles/hero/public/Events%20Management%20festival%20image.jpg?itok=eJ3k-5R6'}
+
 const [data, setData] = useState([])
 
 const getData = async () => {
@@ -30,13 +33,13 @@ const selectEvent = (item) => {
 const renderEvent = ({item}) => <EventCard event={item} onPress={() => selectEvent(item)}/>
 
   return (
-    <View style={styles.container}>
+    <ImageBackground source={image} style={styles.image}>
       <SearchBar/>
       { data.length ? (
         <FlatList data={data} renderItem={renderEvent}/>
       ) : null
       }
-    </View>
+      </ImageBackground>
   )
 }
 
