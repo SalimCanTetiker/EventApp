@@ -4,5 +4,4 @@ export default StyleSheet.create({
     image: {
         flex: 1
     }
-
 })
